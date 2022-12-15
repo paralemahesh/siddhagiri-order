@@ -1,7 +1,6 @@
 import 'package:url_launcher/url_launcher.dart' as url_launcher;
 import 'package:flutter_launch/flutter_launch.dart' as flutter_launch;
 import 'package:html/parser.dart' show parse;
-// import 'package:html/dom.dart' as html;
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -48,7 +47,7 @@ class ShoppingListItem extends StatelessWidget {
     // The BuildContext indicates where the build is
     // taking place and therefore which theme to use.
 
-    return inCart //
+    return inCart
         ? Colors.black54
         : Theme.of(context).primaryColor;
   }
@@ -101,17 +100,11 @@ class ShoppingListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      // onTap: () {
-      //   onCartChanged(product, inCart);
-      // },
       children : [
         Column(
           children : [
             Container(
-            
-            // crossAxisAlignment: CrossAxisAlignment.stretch,
               child: 
-                // Text("hi")
                 _getIcon(context)
               
             ),
@@ -148,8 +141,6 @@ class ShoppingListItem extends StatelessWidget {
         )
       ],
     );
-      // title: ,
-      // trailing: _buildDropDown(product.id, selectedPurchaseOption, product.purchaseOptions)
   }
 }
 
@@ -165,7 +156,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // https://wa.me/0919503782370?text=Good%20Night
     return 
         ShoppingList();
   }
@@ -209,13 +199,11 @@ class _ShoppingListState extends State<ShoppingList> {
       var imageTag = imageAnchor.children[0];
       var imageSrc = imageTag.attributes['data-src'];
       debugPrint('-------------- item details ----------------');
-      // imageSection.children.forEach((element) => debugPrint('tag name ${element.outerHtml}'));
       debugPrint('image href $imageSrc');
 
       var name = detailsSection.children[0].children[0].text;
       var rawPurchaseOptions = detailsSection.children[1].children[0].children.map((po) => po.text);
       debugPrint('name $name');
-      // rawPurchaseOptions.forEach((po) => debugPrint('purchase Option $po'));
 
       List<PurchaseOption> purchaseOptions = [];
       rawPurchaseOptions.toList().asMap().forEach((index, e) {
@@ -234,9 +222,6 @@ class _ShoppingListState extends State<ShoppingList> {
 
       products.add(Product(id: index, name: name, url: imageSrc, purchaseOptions: purchaseOptions));
     });
-    // final veggieItemCount = veggieNames.length;
-    // debugPrint('api data: $veggieItemCount');
-    // veggieNames.forEach((v)=>(print(v)));
 
     return products;
   }
@@ -248,28 +233,11 @@ class _ShoppingListState extends State<ShoppingList> {
       // trigger a rebuild.
       // The framework then calls build, below,
       // which updates the visual appearance of the app.
-
-      debugPrint('list item clicked');
-
-      // if (!inCart) {
-      //   _shoppingCart.add(product);
-      // } else {
-      //   _shoppingCart.remove(product);
-      // }
     });
   }
 
   void handleOnSendMessageBtnClick() async {
-    flutter_launch.FlutterLaunch.launchWhatsapp(phone: "919503782370", message: "Hello\nveggie\t10rs");
-    
-    // https://wa.me/0919503782370?text=Good%20Night whatsapp://wa.me/$phone:03452121308:/?text=${Uri.parse(message)}
-    // final uri = Uri(scheme: 'whatsapp', host: 'wa.me', path: '/919503782370'); // , queryParameters: {'text': 'Good%20Night'});
-    //   debugPrint('URL whatsapp ${uri.toString()}');
-    // if (await true) {
-    //   await url_launcher.launchUrl(uri);
-    // } else {
-    //   throw 'Could not launch ${uri.toString()}';
-    // }
+    flutter_launch.FlutterLaunch.launchWhatsapp(phone: "91**********", message: "Hello\nveggie\t");
   }
 
   final ButtonStyle style =
@@ -296,21 +264,12 @@ class _ShoppingListState extends State<ShoppingList> {
                   Expanded(
                     child: ListView.builder(
                       itemCount: data.length,
-                      // prototypeItem: ShoppingListItem(
-                      //     product: data.first,
-                      //     inCart: false, //_shoppingCart.contains(product),
-                      //     selectedPurchaseOption: 0,
-                      //     onCartChanged: _handleCartChanged,
-                      //     onPOCallbackChanged: ((productId, purchaseOption) {
-                      //       debugPrint('Purchase option for $productId changed to $purchaseOption');
-                      //     }),
-                      //   ),
                       padding: const EdgeInsets.symmetric(vertical: 8.0),
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
                         return ShoppingListItem(
                           product: data[index],
-                          inCart: false, //_shoppingCart.contains(product),
+                          inCart: false, 
                           selectedPurchaseOption: 0,
                           onCartChanged: _handleCartChanged,
                           onPOCallbackChanged: ((productId, purchaseOption) {
